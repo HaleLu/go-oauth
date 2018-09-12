@@ -17,8 +17,6 @@ const (
 var (
 	// ErrStmtNil prepared stmt error
 	ErrStmtNil = errors.New("sql: prepare failed and stmt nil")
-	// ErrNoMaster is returned by Master when call master multiple times.
-	ErrNoMaster = errors.New("sql: no master instance")
 	// ErrNoRows is returned by Scan when QueryRow doesn't return a row.
 	// In such a case, QueryRow returns a placeholder *Row value that defers
 	// this error until a Scan.
@@ -30,8 +28,6 @@ var (
 // DB database.
 type DB struct {
 	connect *conn
-	idx     int64
-	master  *DB
 }
 
 // conn database connection
@@ -115,7 +111,6 @@ func Open(c *Config) (*DB, error) {
 	}
 	co := &conn{DB: d, conf: c}
 	db.connect = co
-	db.master = &DB{connect: db.connect}
 	return db, nil
 }
 
@@ -186,15 +181,6 @@ func (db *DB) Ping(c context.Context) (err error) {
 		return
 	}
 	return
-}
-
-// Master return *DB instance direct use master conn
-// use this *DB instance only when you have some reason need to get result without any delay.
-func (db *DB) Master() *DB {
-	if db.master == nil {
-		panic(ErrNoMaster)
-	}
-	return db.master
 }
 
 func (db *conn) begin(c context.Context) (tx *Tx, err error) {
