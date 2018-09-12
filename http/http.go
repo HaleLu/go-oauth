@@ -1,10 +1,10 @@
 package http
 
 import (
-	"hello-web/conf"
-	"hello-web/errors"
 	"time"
 
+	"github.com/HaleLu/go-oauth/conf"
+	"github.com/HaleLu/go-oauth/errors"
 	"github.com/gin-gonic/gin"
 	log "github.com/golang/glog"
 )

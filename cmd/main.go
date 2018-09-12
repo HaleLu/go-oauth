@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"hello-web/conf"
-	"hello-web/http"
+	"github.com/HaleLu/go-oauth/conf"
+	"github.com/HaleLu/go-oauth/http"
 
 	log "github.com/golang/glog"
 )
