@@ -29,7 +29,7 @@ type ServerConfig struct {
 }
 
 func init() {
-	flag.StringVar(&confPath, "conf", "default.toml", "config path")
+	flag.StringVar(&confPath, "conf", "../cmd/default.toml", "config path")
 }
 
 // Init init conf

@@ -2,10 +2,9 @@ package sql
 
 import (
 	"github.com/HaleLu/go-oauth/lib/time"
-	log "github.com/golang/glog"
-
 	// database driver
 	_ "github.com/go-sql-driver/mysql"
+	log "github.com/golang/glog"
 )
 
 // Config mysql config.
@@ -26,7 +25,7 @@ func NewMySQL(c *Config) (db *DB) {
 	}
 	db, err := Open(c)
 	if err != nil {
-		log.Error("open mysql error(%v)", err)
+		log.Errorf("open mysql error(%v)", err)
 		panic(err)
 	}
 	return
