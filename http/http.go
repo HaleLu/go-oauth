@@ -5,6 +5,7 @@ import (
 
 	"github.com/HaleLu/go-oauth/conf"
 	"github.com/HaleLu/go-oauth/errors"
+	"github.com/HaleLu/go-oauth/service"
 	"github.com/gin-gonic/gin"
 	log "github.com/golang/glog"
 )
@@ -14,8 +15,14 @@ const (
 	contextErrCode = "context/err/code"
 )
 
+var (
+	svr *service.Service
+)
+
 // Init init http.
 func Init(c *conf.Config) {
+	svr = service.New(c)
+
 	engine := gin.New()
 	engine.Use(loggerHandler)
 	outerRouter(engine)

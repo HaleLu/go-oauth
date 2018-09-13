@@ -4,6 +4,7 @@ import (
 	"flag"
 
 	"github.com/BurntSushi/toml"
+	"github.com/HaleLu/go-oauth/lib/db/sql"
 )
 
 var (
@@ -16,7 +17,11 @@ var (
 type Config struct {
 	Author     string
 	HTTPServer *ServerConfig
+	DB         *sql.Config
 }
+
+// DB db config.
+type DB sql.Config
 
 // ServerConfig present HTTP server conf
 type ServerConfig struct {
