@@ -17,6 +17,7 @@ var (
 	OK           ecode
 	NotModified  ecode = -304
 	ParamsErr    ecode = -400
+	Unauthorized ecode = -401
 	NothingFound ecode = -404
 	ServerErr    ecode = -500
 )

@@ -32,7 +32,10 @@ func Init(c *conf.Config) {
 // outerRouter init local router api path.
 func outerRouter(e *gin.Engine) {
 	group := e.Group("/api")
-	group.GET("ping", ping)
+	{
+		group.GET("ping", ping)
+		group.POST("login", login)
+	}
 }
 
 func loggerHandler(c *gin.Context) {

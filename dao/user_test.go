@@ -9,6 +9,15 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 )
 
+func Test_RawUserByNameAndPwd(t *testing.T) {
+	Convey("test RawUserByNameAndPwd", t, func() {
+		once.Do(startService)
+		user, err := d.RawUserByNameAndPwd(ctx, "admin", fmt.Sprintf("%X", md5.Sum([]byte("123456"))))
+		So(err, ShouldBeNil)
+		So(user, ShouldBeNil)
+	})
+}
+
 func Test_AddUser(t *testing.T) {
 	Convey("test AddUser", t, func() {
 		once.Do(startService)
